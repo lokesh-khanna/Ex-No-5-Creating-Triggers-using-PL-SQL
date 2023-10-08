@@ -11,43 +11,27 @@ To create a Trigger using PL/SQL.
 7. Whenever a salary is updated for the employee it must be logged into the salary_log table with old salary and new salary.
 8. Display the employee table, salary_log table.
 ### Program:
+ # Create worker table
 ```
-CREATE TABLE employed(
-  empid NUMBER,
-  empname VARCHAR2(10),
-  dept VARCHAR2(10),
-  salary NUMBER
+CREATE TABLE worker
+(
+empid NUMBER,
+empname VARCHAR2(10)
+dept VARCHAR2(10),
+salary NUMBER
 );
-CREATE TABLE sal_log (
-  log_id NUMBER GENERATED ALWAYS AS IDENTITY,
-  empid NUMBER,
-  empname VARCHAR2(10),
-  old_salary NUMBER,
-  new_salary NUMBER,
-  update_date DATE
-);
--- Insert the values in the employee table
-insert into employed values(1,'dulquer','IT',1000000);
-insert into employed values(2,'amal','SALES',500000);
-```
-### Create employee table
-```
-CREATE TABLE employed(
-  empid NUMBER,
-  empname VARCHAR2(10),
-  dept VARCHAR2(10),
-  salary NUMBER
 );
 ```
 ### Create salary_log table
 ```
-CREATE TABLE sal_log (
-  log_id NUMBER GENERATED ALWAYS AS IDENTITY,
-  empid NUMBER,
-  empname VARCHAR2(10),
-  old_salary NUMBER,
-  new_salary NUMBER,
-  update_date DATE
+CREATE TABLE vj_log
+(
+log_id NUMBER GENERATED ALWAYS AS IDENTITY,
+empid NUMBER,
+empname VARCHAR2(10),
+old_salary NUMBER,
+new_salary NUMBER,
+update_date DATE
 );
 ```
 ### PLSQL Trigger code
@@ -64,18 +48,20 @@ BEGIN
 END;
 /
 -- Insert the values in the employee table
-insert into employed values(1,'dulquer','IT',1000000);
-insert into employed values(2,'amal','SALES',500000);
+insert into worker values(1,'lokesh','sales',10000);
+insert into worker values(2,'khanna','manager',20000);
+insert into worker values(3,'lokeshr','hr',30000);
 -- Update the salary of an employee
-UPDATE employed
-SET salary = 60000
-WHERE empid = 1;
+UPDATE worker
+set salary = 12000
+where empid=3;
 -- Display the employee table
-SELECT * FROM employed;
+select * from worker;
 -- Display the salary_log table
-SELECT * FROM sal_log;
+select * from vj_log;
 ```
 ### Output:
-![image](https://github.com/harinidq/Ex-No-5-Creating-Triggers-using-PL-SQL/assets/113497680/ea20f27e-6ebb-425d-8f26-eeed43e38d89)
+![image](https://github.com/lokesh-khanna/Ex-No-5-Creating-Triggers-using-PL-SQL/assets/119606216/8789c0c9-df96-453a-8a86-d23239ec5fad)
+
 ### Result:
 Thus , the output has been successfully verified.
